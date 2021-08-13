@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wireframe</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+        rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <!-- BEGIN Login section -->
+        <section class="container mt-5" id="Login">
+            <div class="row justify-content-center">
+                <div class="col-md-4 justify-content-center mr-0">
+                    <h3>Admin Login</h3>
+                    <form action="" method="POST" id="login-form">
+                        <div class="error"></div>
+                        <label for="username">Username</label>
+                        <input type="email" class="form-control" id="username" name="username" placeholder="example@domain.com">
+                        <label for="password">Pasword</label>
+                        <input type="password" class="form-control" id="passsword" name="password" placeholder="Input your password here">
+                        <input type="checkbox" class="" id="check">
+                        <label for="checkbox">Remember me</label>
+                        <br>
+                        <button type="submit" class="btn btn-lg btn-outline-dark form-control">Login</button>
+                    </form>
+                    <a href="#" id="gotoRegister">Not registered?</a>
+                </div>
+            </div>
+        </section>
+        <!-- END Login section -->
+
+        <!-- BEGIN Admin Register section -->
+        <section class="container mt-5" id="Register">
+            <div class="row justify-content-center">
+                <div class="col-md-4 justify-content-center">
+                    <h3>Admin Sign-up</h3>
+                    <form action="" method="POST" id="signup-form">
+                        <div class="error"></div>
+                        <label for="username">First Name</label>
+                        <input type="text" class="form-control" id="first_name" name="firstname" placeholder="John">
+                        <label for="username">Last Name</label>
+                        <input type="text" class="form-control" id="last_name" name="lastname" placeholder="John">
+                        <label for="username">Username</label>
+                        <input type="email" class="form-control" id="user_name" name="username" placeholder="example@domain.com">
+                        <label for="password">Pasword</label>
+                        <input type="password" class="form-control" id="password1" minlength="6" name="password" placeholder="Input your password here">
+                        <label for="password">Confirm Pasword</label>
+                        <input type="password" class="form-control" id="password2" name="confirm" placeholder="Input your password here">
+                        <input type="checkbox" class="" id="terms">
+                        <label for="Terms" aria-required="true" required>Accept our Terms and Condition</label>
+                        <br>
+                        <button type="submit" class="btn btn-lg btn-outline-dark form-control">Sign-up</button>
+                    </form>
+                    <a href="#" id="gotoLogin">Already have an account?</a>
+                </div>
+            </div>
+        </section>
+        <!-- END Admin Register section -->
+
+    
+
+        <!-- BEGIN Dashboard Default section -->
+        <section class="container mt-1" id="dashboard">
+            <div class="row">
+                <nav class="navabar">
+                    <!-- <div class="mr-auto"></div> -->
+                    <ul class="navbar-nav nav-pills d-flex flex-row float-end">
+                        <li class="nav-item p-3">
+                            <a href="" id="cardRegisterlink" class="nav-link">Register <i class="bi bi-book"></i></a>
+                        </li>
+                        <li class="nav-item p-3">
+                            <a href="" id="keyVerifier" class="nav-link">Verify-Keys<i class="bi bi-key"></i></a>
+                        </li>
+                        <li class="nav-item p-3">
+                            <a href="" id="account-settings" class="nav-link">Account <i class="bi bi-gear"></i></a>
+                        </li>
+                        <li class="nav-item p-3">
+                            <a href="" id="logout" class="nav-link"><i class="bi bi-box-arrow-left"></i> Logout</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- BEGIN ID Verify section -->
+            <div class="row mt-4" id="listlabel_section">
+                <div class="col-md-6 col-sm-12 justify-content-center">
+                    <form method="POST" id="id-verify-form">
+                        <div class="error"></div>
+                        <label for="username">Validate ID/PassPort No.</label>
+                        <input type="text" class="form-control" id="id_number" name="id" placeholder="Type Id Number Here">
+                        <br>
+                        <button type="submit" class="btn btn-info">Validate</button>
+                    </form>
+                </div>
+            </div>
+            <!-- END ID Verify section -->
+
+            <!-- BEGIN key verify section -->
+            <div class="row mt-4" id="key-section">
+                <div class="col-md-6 col-sm-12 justify-content-center">
+                    <form method="POST" id="verify-form">
+                        <div class="error"></div>
+                        <label for="username">Validate ID/PassPort No.</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="key-value"
+                            name="key"
+                            placeholder="Type public Key here to verify"
+                        >
+                        <br>
+                        <button type="submit" class="btn btn-info">Verify</button>
+                    </form>
+                    <br>
+                    <br>
+                </div>
+            </div>
+            <!-- END key verify section -->
+
+            <!-- BEGIN Line Register section -->
+            <div class="row justify-content-center" id="card-register">
+                <div class="col-md-4 justify-content-center">
+                    <h3>Register Here</h3>
+                    <form action="" method="POST" id="card-register-form">
+                        <div class="error"></div>
+                        <label for="username">First Name</label>
+                        <input type="text" class="form-control" id="holderFirstName" name="firstname" placeholder="John">
+                        <label for="username">Last Name</label>
+                        <input type="text" class="form-control" id="holderLastName" name="lastname" placeholder="John">
+                        <label for="username">ID</label>
+                        <input type="text" class="form-control" id="holderID" name="id" placeholder="12345678">
+                        <label for="password">MSSIDN</label>
+                        <br>
+                        <button type="submit" class="btn btn-lg btn-outline-dark form-control">Sign-up</button>
+                    </form>
+                    <a href="#" id="gotoLogin">Already have an account?</a>
+                </div>
+            </div>
+            <!-- END Line Register section -->
+            
+            <div class="row mt-4" id="profile-tools">
+                <div class="col-md-6 col-sm-12 justify-content-center">
+                    <form method="POST" id="update-form">
+                        <label for="username">Username</label>
+                        <input type="email" class="form-control" disabled id="u_name" name="uname">
+                        <label for="Name">First Name</label>
+                        <input type="text" class="form-control" id="f_name" name="fname">
+                        <label for="Last Name">Last Name</label>
+                        <input type="text" class="form-control" id="l_name" name="lname">
+                        <label for="password">Pasword</label>
+                        <input type="password" class="form-control" id="p1" minlength="6" name="pass1">
+                        <!-- <label for="password">Confirm Pasword</label> -->
+                        <!-- <input type="password" class="form-control" id="p2" name="pass2"> -->
+                        <br>
+                        <button type="submit" class="btn btn-lg btn-outline-dark form-control">Update</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <!-- END Dashboard Default section -->
+    </main>
+
+    <script src="custom.js"></script>
+</body>
+</html>
