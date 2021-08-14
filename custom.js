@@ -315,15 +315,18 @@ function verifyIDs(event) {
     event.preventDefault();
     const idNumber = idVerifyForm.querySelector("#id_number").value;
     
-    fetch("http://0.0.0.0:8080/verifyId.php", {
+    fetch("http://0.0.0.0:8088/verifyId.php", {
         method: 'POST', // or 'PUT'
-        idNumber
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: idNumber
     })
     .then(response => {
         console.log(response.json());
     })
-    .then((done) => {alert('Success:', done.data)})
-    .catch((error) => {alert('Error:', error)});
+    .then((result) => { console.log(result)})
+    .catch((error) => {console.log(error)});
 }
 
 
@@ -343,18 +346,23 @@ function goTo(event) {
 }
 
 // adding new task labels
-keyVerifyForm.addEventListener('submit', verifyKeys);
+keyVerifyForm.addEventListener('submit', verifyKeys, {once:true, passive: false});
 
 function verifyKeys(event) {
     event.preventDefault();
     const pub_key = keyVerifyForm.querySelector("#key-value").value;
 
-    fetch("http://0.0.0.0:8080/verifyKey.php", {
+    fetch("http://0.0.0.0:8088/verifyKey.php", {
         method: 'POST', // or 'PUT'
-        pub_key
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(pub_key)
     })
-    .then(response => response)
-    .then(data => {alert('Success:', JSON.stringify(data))})
-    .catch(error => {alert('Error:', JSON.stringify(error))});
+    .then(response => {
+        console.log(response.json());
+    })
+    .then((result) => {console.log(result)})
+    .catch((error) => {console.log(error)});
 }
 

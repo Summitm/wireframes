@@ -36,7 +36,8 @@ class Db{
 
     public function verifyIds($payload) {
 
-        $query = $this->dbHandler->prepare("SELECT * FROM `niims_dtls` WHERE `id_number` = $payload");
+        $query = $this->dbHandler->prepare("SELECT * FROM `niims_dtls` WHERE `id_number` = :id");
+        $query->bindParam(':id', $puyload);
         $query->execute();
 
         $response = $query->fetchAll();
@@ -62,9 +63,10 @@ class Db{
 
     }
 
-    public function verifyKeys($key) {
+    public function verifyKeys($keyvalue) {
 
-        $query = $this->dbHandler->prepare("SELECT * FROM `user_reg` WHERE `publickey` = $key");
+        $query = $this->dbHandler->prepare("SELECT * FROM `user_reg` WHERE `publickey` = :keyvalue");
+        $query->bindParam(':keyvalue', $keyvalue);
         $query->execute();
 
         $checked = $query->fetchAll();
@@ -72,15 +74,15 @@ class Db{
         if(count($checked) > 0) {
             return $result = array(
                 "status" => true,
-                "key" => $key,
+                "key" => $keyvalue,
                 "data" => "The Public Key is valid."
             );
         }
         else {
 
             return $result = array(
-                "status" => true,
-                "key" => $key,
+                "status" => false,
+                "key" => $keyvalue,
                 "data" => "The Key is Invalid! Please check that you have the right key!."
             );
 
