@@ -283,11 +283,13 @@ function registerCard(event) {
     const holderFirstName = document.querySelector("#holderFirstName").value;
     const holderLastName = document.querySelector("#holderLastName").value;
     const holderID = document.querySelector("#holderID").value;
+    const cardIMSI = document.querySelector("#cardIMSI");
 
     const payload = JSON.stringify({
         firstname: holderFirstName,
         lastname: holderLastName,
-        idNumber: holderID
+        idNumber: holderID,
+        IMSI: cardIMSI 
 
     });
 
@@ -313,13 +315,15 @@ function verifyIDs(event) {
     event.preventDefault();
     const idNumber = idVerifyForm.querySelector("#id_number").value;
     
-    fetch("https://jsonplaceholder.typicode.com/posts", {
+    fetch("http://0.0.0.0:8080/verifyId.php", {
         method: 'POST', // or 'PUT'
         idNumber
     })
-    .then(response => response)
-    .then(data => {alert('Success:', JSON.stringify(data))})
-    .catch(error => {alert('Error:', JSON.stringify(error))});
+    .then(response => {
+        console.log(response.json());
+    })
+    .then((done) => {alert('Success:', done.data)})
+    .catch((error) => {alert('Error:', error)});
 }
 
 
@@ -345,7 +349,7 @@ function verifyKeys(event) {
     event.preventDefault();
     const pub_key = keyVerifyForm.querySelector("#key-value").value;
 
-    fetch("https://jsonplaceholder.typicode.com/posts", {
+    fetch("http://0.0.0.0:8080/verifyKey.php", {
         method: 'POST', // or 'PUT'
         pub_key
     })
