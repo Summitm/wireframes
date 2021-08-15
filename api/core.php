@@ -37,7 +37,7 @@ class Db{
     public function verifyIds($payload) {
 
         $query = $this->dbHandler->prepare("SELECT * FROM `niims_dtls` WHERE `id_number` = :id");
-        $query->bindParam(':id', $puyload);
+        $query->bindParam(':id', $payload);
         $query->execute();
 
         $response = $query->fetchAll();
@@ -45,16 +45,16 @@ class Db{
         if(count($response) > 0) {
 
             return $result = array(
-                "status" => true,
+                "status" => "Success",
                 "id" => $payload,
-                "data" => "This ID is valid."
+                "data" => "The ID is valid."
             );
 
         }
         else{
 
             return $result = array(
-                "status" => false,
+                "status" => "Failed",
                 "id" => $payload,
                 "data" => "Not a valid ID."
             );
