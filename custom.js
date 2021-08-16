@@ -323,9 +323,9 @@ function verifyIDs(event) {
         body: idNumber
     })
     .then(response => {
-        console.log(response.json());
+        return response.json();
     })
-    .then((result) => { console.log(result)})
+    .then((result) => {alert(`${result.status}.\n\n${result.data}`)})
     .catch((error) => {console.log(error)});
 }
 
@@ -357,12 +357,12 @@ function verifyKeys(event) {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(pub_key)
+        body: pub_key
     })
     .then(response => {
-        console.log(response.json());
+        return response.json();
     })
-    .then((result) => {console.log(result)})
+    .then((result) => {alert(`\n${result.key}.\n\n${result.data}`)})
     .catch((error) => {console.log(error)});
 }
 
