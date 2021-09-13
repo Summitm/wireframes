@@ -22,7 +22,7 @@
                         <div class="error"></div>
                         <label for="username">Username</label>
                         <input type="email" class="form-control" id="username" name="username" placeholder="example@domain.com">
-                        <label for="password">Pasword</label>
+                        <label for="password">Password</label>
                         <input type="password" class="form-control" id="passsword" name="password" placeholder="Input your password here">
                         <input type="checkbox" class="" id="check">
                         <label for="checkbox">Remember me</label>
@@ -48,12 +48,12 @@
                         <input type="text" class="form-control" id="last_name" name="lastname" placeholder="John">
                         <label for="username">Username</label>
                         <input type="email" class="form-control" id="user_name" name="username" placeholder="example@domain.com">
-                        <label for="password">Pasword</label>
+                        <label for="password">Password</label>
                         <input type="password" class="form-control" id="password1" minlength="6" name="password" placeholder="Input your password here">
-                        <label for="password">Confirm Pasword</label>
+                        <label for="password">Confirm Password</label>
                         <input type="password" class="form-control" id="password2" name="confirm" placeholder="Input your password here">
-                        <input type="checkbox" class="" id="terms">
-                        <label for="Terms" aria-required="true" required>Accept our Terms and Condition</label>
+                        <!-- <input type="checkbox" class="" id="terms"> -->
+                        <!-- <label for="Terms" aria-required="true" required>Accept our Terms and Condition</label> -->
                         <br>
                         <button type="submit" class="btn btn-lg btn-outline-dark form-control">Sign-up</button>
                     </form>
@@ -68,37 +68,77 @@
         <!-- BEGIN Dashboard Default section -->
         <section class="container mt-1" id="dashboard">
             <div class="row">
-                <nav class="navabar">
-                    <!-- <div class="mr-auto"></div> -->
-                    <ul class="navbar-nav nav-pills d-flex flex-row float-end">
-                        <li class="nav-item p-3">
-                            <a href="" id="cardRegisterlink" class="nav-link">Register <i class="bi bi-book"></i></a>
-                        </li>
-                        <li class="nav-item p-3">
-                            <a href="" id="keyVerifier" class="nav-link">Verify-Keys<i class="bi bi-key"></i></a>
-                        </li>
-                        <li class="nav-item p-3">
-                            <a href="" id="account-settings" class="nav-link">Account <i class="bi bi-gear"></i></a>
-                        </li>
-                        <li class="nav-item p-3">
-                            <a href="" id="logout" class="nav-link"><i class="bi bi-box-arrow-left"></i> Logout</a>
-                        </li>
-                    </ul>
+                <nav class="navabar navbar-expand-md">
+                    <div class="container">
+                        <!-- <div class="mr-auto"></div> -->
+                        <ul class="navbar-nav nav-pills d-flex flex-row float-end">
+                            <li class="nav-item p-3">
+                                <a href="/" class="nav-link">Admin-Dashboard</a>
+                            </li>
+                            <li class="nav-item p-3">
+                                <a href="" id="cardRegisterlink" class="nav-link">Register <i class="bi bi-book"></i></a>
+                            </li>
+                            <li class="nav-item p-3">
+                                <a href="" id="keyVerifier" class="nav-link">Verify-Keys<i class="bi bi-key"></i></a>
+                            </li>
+                            <li class="nav-item p-3">
+                                <a href="" id="account-settings" class="nav-link">Admin<i class="bi bi-gear"></i></a>
+                            </li>
+                            <li class="nav-item p-3">
+                                <a href="" id="logout" class="nav-link"><i class="bi bi-box-arrow-left"></i> Logout</a>
+                            </li>
+                        </ul>
+                    </div>
                 </nav>
             </div>
-            <!-- BEGIN ID Verify section -->
-            <div class="row mt-4" id="listlabel_section">
-                <div class="col-md-6 col-sm-12 justify-content-center">
-                    <form method="POST" id="id-verify-form">
+
+            <!-- BEGIN FORM WITH WIZARD -->
+            <div class="nav-tab">
+
+                <!-- BEGIN ID Verify section -->
+                <div class="row mt-4" id="listlabel_section">
+                    <div class="col-md-6 col-sm-12 justify-content-center">
+                        <form method="POST" id="id-verify-form">
+                            <div class="error"></div>
+                            <label for="username">Verify ID/PassPort No.</label>
+                            <input type="text" class="form-control" id="id_number" name="id" placeholder="Type Id Number Here">
+                            <br>
+                            <button type="submit" class="btn btn-info">Verify</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- END ID Verify section -->
+
+            </div>
+            <!-- end tab 1 -->
+
+            <div class="nav-tab">
+                
+                <!-- BEGIN Line Register section -->
+            <div class="row justify-content-center" id="card-register">
+                <div class="col-md-4 justify-content-center">
+                    <h3>Register Here</h3>
+                    <form action="" method="POST" id="card-register-form">
                         <div class="error"></div>
-                        <label for="username">Verify ID/PassPort No.</label>
-                        <input type="text" class="form-control" id="id_number" name="id" placeholder="Type Id Number Here">
+                        <label for="username">First Name</label>
+                        <input type="text" class="form-control" id="holderFirstName" name="firstname" placeholder="John">
+                        <label for="username">Last Name</label>
+                        <input type="text" class="form-control" id="holderLastName" name="lastname" placeholder="John">
+                        <label for="username">ID</label>
+                        <input type="text" class="form-control" id="holderID" name="id" placeholder="12345678">
+                        <label for="password">IMSI</label>
+                        <input type="text" class="form-control" id="cardIMSI" name="id" placeholder="IMSI Code">
                         <br>
-                        <button type="submit" class="btn btn-info">Verify</button>
+                        <button type="submit" class="btn btn-lg btn-outline-dark form-control">Submit</button>
                     </form>
+                    <!-- <a href="#" id="gotoLogin">Already have an account?</a> -->
                 </div>
             </div>
-            <!-- END ID Verify section -->
+            <!-- END Line Register section -->
+                
+
+            </div>
+            <!-- end tab 2 -->
 
             <!-- BEGIN key verify section -->
             <div class="row mt-4" id="key-section">
@@ -122,27 +162,8 @@
             </div>
             <!-- END key verify section -->
 
-            <!-- BEGIN Line Register section -->
-            <div class="row justify-content-center" id="card-register">
-                <div class="col-md-4 justify-content-center">
-                    <h3>Register Here</h3>
-                    <form action="" method="POST" id="card-register-form">
-                        <div class="error"></div>
-                        <label for="username">First Name</label>
-                        <input type="text" class="form-control" id="holderFirstName" name="firstname" placeholder="John">
-                        <label for="username">Last Name</label>
-                        <input type="text" class="form-control" id="holderLastName" name="lastname" placeholder="John">
-                        <label for="username">ID</label>
-                        <input type="text" class="form-control" id="holderID" name="id" placeholder="12345678">
-                        <label for="password">IMSI</label>
-                        <input type="text" class="form-control" id="cardIMSI" name="id" placeholder="IMSI Code">
-                        <br>
-                        <button type="submit" class="btn btn-lg btn-outline-dark form-control">Submit</button>
-                    </form>
-                    <!-- <a href="#" id="gotoLogin">Already have an account?</a> -->
-                </div>
             </div>
-            <!-- END Line Register section -->
+            <!-- end tab 3 -->
             
             <div class="row mt-4" id="profile-tools">
                 <div class="col-md-6 col-sm-12 justify-content-center">
@@ -164,6 +185,7 @@
             </div>
         </section>
         <!-- END Dashboard Default section -->
+        <!-- BEGIN FORM WITH WIZARD -->
     </main>
 
     <script src="custom.js"></script>

@@ -5,8 +5,8 @@ class Db{
     protected $dbName = 'wireframes';
     protected $dbHost = 'localhost';
 
-    protected $dbUser = 'root';
-    protected $dbPass = 'kihika@10';
+    protected $dbUser = '';
+    protected $dbPass = '';
 
     protected $dbHandler, $dbStmt;
 
@@ -70,11 +70,13 @@ class Db{
         $query->execute();
 
         $checked = $query->fetchAll();
+        echo $checked;
 
         if(count($checked) > 0) {
             return $result = array(
                 "status" => true,
                 "key" => $keyvalue,
+                "name" => json_encode($checked),
                 "data" => "The Public Key is valid."
             );
         }
@@ -83,6 +85,7 @@ class Db{
             return $result = array(
                 "status" => false,
                 "key" => $keyvalue,
+                "name" => null,
                 "data" => "The Key is Invalid! Please check that you have the right key!."
             );
 

@@ -77,10 +77,10 @@ function register(e) {
     const username = registerForm.querySelector("#user_name").value;
     const password = registerForm.querySelector("#password1").value;
     const password1 = registerForm.querySelector("#password2").value;
-    const tcsChecked = registerForm.querySelector("#terms");
+    // const tcsChecked = registerForm.querySelector("#terms");
     errorSpace.innerHTML = "";
 
-    if(firstname !== '' && lastname !== '' && username !== '' && password !== '' && password1 !== '' && tcsChecked.checked) {
+    if(firstname !== '' && lastname !== '' && username !== '' && password !== '' && password1 !== '') {
         errorSpace.innerHTML = "";
 
         if(password === password1) {
@@ -92,7 +92,7 @@ function register(e) {
                     fname: firstname,
                     lname: lastname,
                     pass: password,
-                    rememberMe: false
+                    // rememberMe: false
                 };
                 new_user_arr[username] = new_user;
                 localStorage.setItem('users', JSON.stringify(new_user_arr));
@@ -128,9 +128,9 @@ function login(e) {
     // login fields
     const username = loginForm.querySelector("#username").value;
     const password = loginForm.querySelector("#passsword").value;
-    const isChecked = loginForm.querySelector("#check");
+    // const isChecked = loginForm.querySelector("#check");
 
-    if(username !== '' && password !== '' && isChecked.checked) {
+    if(username !== '' && password !== '') {
         try {
             context_user = getUser(username);
 
@@ -140,7 +140,7 @@ function login(e) {
                     let sess_to_obj = sessionlist ? JSON.parse(sessionlist) : {}
                     let new_session_data = {
                         user: username,
-                        rememberMe: true
+                        // rememberMe: true
                     }
                     sess_to_obj['new'] = new_session_data;
                     sessionStorage.setItem('loggedIn', JSON.stringify(new_session_data));
@@ -283,26 +283,29 @@ function registerCard(event) {
     const holderFirstName = document.querySelector("#holderFirstName").value;
     const holderLastName = document.querySelector("#holderLastName").value;
     const holderID = document.querySelector("#holderID").value;
-    const cardIMSI = document.querySelector("#cardIMSI");
+    const cardIMSI = document.querySelector("#cardIMSI").value;
 
-    const payload = JSON.stringify({
+    const payload = {
         firstname: holderFirstName,
         lastname: holderLastName,
         idNumber: holderID,
-        IMSI: cardIMSI 
+        IMSI: cardIMSI,
+        uniqueId: Math.floor(Math.random() * 10000),
+        status: 0
+    };
 
-    });
-
-    fetch("https://jsonplaceholder.typicode.com/posts", {
+    fetch("http://0.0.0.0:8088/regi.php", {
         method: 'POST', // or 'PUT'
         headers: {
             'Content-Type': 'application/json',
         },
-        payload
+        body: payload
     })
-    .then(response => response)
-    .then(data => {alert('Success:', JSON.stringify(data))})
-    .catch(error => {alert('Error:', JSON.stringify(error))});
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+    })
+    .catch(error => {alert('Error:', error)});
 }
 
 /*===================================Validate Id number=======================================*/
@@ -325,7 +328,9 @@ function verifyIDs(event) {
     .then(response => {
         return response.json();
     })
-    .then((result) => {alert(`${result.status}.\n\n${result.data}`)})
+    .then((result) => {
+        alert(`\n${result.status}.\n\n${result.data}`);
+    })
     .catch((error) => {console.log(error)});
 }
 
@@ -362,7 +367,24 @@ function verifyKeys(event) {
     .then(response => {
         return response.json();
     })
-    .then((result) => {alert(`\n${result.key}.\n\n${result.data}`)})
+    .then((result) => {
+        alert(`\n${result.data}\n\n${result.key} belongs to ${JSON.parse(result.name)}.`);
+        if(result.status) {
+            alert(`Click okay to start your download!`)
+            createDownload(result);
+        }
+        else {
+            console.log("No cert Provided!")
+        }
+    })
     .catch((error) => {console.log(error)});
 }
 
+
+function createDownload(content) {
+    const a = document.createElement('a');
+    const createdFile = new Blob([JSON.stringify(content)], { type: 'application/pkix-cert' });
+    a.href = URL.createObjectURL(createdFile)
+    a.download = "DigiCert";
+    a.click();
+}
